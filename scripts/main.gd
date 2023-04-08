@@ -8,13 +8,17 @@ extends Node2D
 @onready var game_over_label = $"/root/World/HUD/UI/GameOver"
 @onready var screen_cover = $"/root/World/HUD/UI/ScreenCover"
 
-var bluebird = preload("res://scenes/enemy.tscn")
-var redbird = preload("res://scenes/redbird.tscn")
-var greybird = preload("res://scenes/greybird.tscn")
-var greenbird = preload("res://scenes/greenbird.tscn")
-var purplebird = preload("res://scenes/purplebird.tscn")
-var yellowbird = preload("res://scenes/yellowbird.tscn")
+var thebirds = preload("res://scenes/the_birds.tscn")
 
+var bird_index = [
+		"bluebird", -60, 1.0, 5,
+		"greybird", -65, 0.9, 10,
+		"redbird", -70, 1.1, 15,
+		"greenbird", -80, 1.2, 20,
+		"yellowbird", -90, 1.3, 25
+]
+var number_of_birds = [0, 4, 8 , 12, 16]
+var firstbird = 4
 var rng = RandomNumberGenerator.new()
 var game_ended = false
 var music_pitch: float = 0.8
@@ -46,19 +50,25 @@ func _on_player_died():
 
 
 func _spawn_pigeons():
-		var available_birds = [
-			bluebird,
-			redbird,
-			greybird,
-			greenbird,
-			purplebird,
-			yellowbird
-		]
-		var bird_index = rng.randi_range(0, available_birds.size() -1)
-		var new_pigeon = available_birds[bird_index].instantiate()
-		var y = rng.randi_range(40,560)
-		new_pigeon.position = Vector2(750, y)
-		add_child(new_pigeon)
+	#we have 5 birds. Pick the bird
+	#5 minus 5 is 0. Use this 0 to pick the first bird from the bird_index
+	#later we get -4, -3, -2, -1 -0 
+	var available_birds = rng.randi_range(0, number_of_birds.size() -firstbird)
+	#print(available_birds)
+	#we have picked our bird, now pick the color
+	#var picked_pigeon = bird_index[available_birds]
+	#print(picked_pigeon)
+	var speed = available_birds + 1
+	var die_pitch = available_birds + 2
+	#var damage = available_birds + 3
+	var spawn_bird = thebirds.instantiate()
+	var y = rng.randi_range(40,560)
+	spawn_bird.position = Vector2(750, y)
+	#spawn_bird.animation = bird_index[available_birds]
+	spawn_bird.speed = bird_index[speed]
+	spawn_bird.die_pitch = bird_index[die_pitch]
+	#spawn_bird.damage = bird_index[damage]
+	add_child(spawn_bird)
 
 
 func _on_pigeon_spawner_timeout():
@@ -67,6 +77,8 @@ func _on_pigeon_spawner_timeout():
 
 
 func _on_level_up_timer_timeout():
+	firstbird -= 1
+	if firstbird < 0: firstbird = 0
 	$PigeonSpawner.wait_time -= 0.1
 	if $PigeonSpawner.wait_time == 0.1:
 		$PigeonSpwaner.wait_time = 0.2

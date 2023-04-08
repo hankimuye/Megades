@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq7yr17nu46dw"]
+
+[ext_resource type="Script" path="res://scripts/bird.gd" id="1_kww2j"]
+[ext_resource type="PackedScene" uid="uid://cqbcrcwl2fjp6" path="res://scenes/the_birds.tscn" id="2_ajs0n"]
+
+[node name="Bird" type="Node2D"]
+script = ExtResource("1_kww2j")
+
+[node name="Birds" parent="." instance=ExtResource("2_ajs0n")]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://n77yg5ad7ohl"]
+
+[ext_resource type="Script" path="res://scripts/enemyhitbox.gd" id="1_k3xdr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4avo5"]
+radius = 11.0
+height = 24.0
+
+[node name="EnemyHitBox" type="Area2D" groups=["pigeon"]]
+collision_layer = 2
+script = ExtResource("1_k3xdr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4avo5")

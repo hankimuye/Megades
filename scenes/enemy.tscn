@@ -1,9 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://bwxqnmyeobwnd"]
+[gd_scene load_steps=21 format=3 uid="uid://bwxqnmyeobwnd"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_a7kpx"]
 [ext_resource type="Texture2D" uid="uid://7m5wy2u8fms1" path="res://art/Bird Fall (40x48).png" id="2_3xmse"]
 [ext_resource type="Texture2D" uid="uid://ci80hc3rpfeyr" path="res://art/Bird Flying (32x32).png" id="2_peyd0"]
-[ext_resource type="Script" path="res://scripts/enemyhitbox.gd" id="3_ds68q"]
+[ext_resource type="PackedScene" uid="uid://n77yg5ad7ohl" path="res://scenes/enemy_hit_box.tscn" id="4_j30ek"]
 [ext_resource type="AudioStream" uid="uid://ehxului7fx3n" path="res://sounds/kakaoo.mp3" id="5_fjvr5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qv6wr"]
@@ -114,10 +114,6 @@ animations = [{
 radius = 12.0
 height = 28.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4avo5"]
-radius = 11.0
-height = 24.0
-
 [node name="Enemy" type="CharacterBody2D" groups=["pigeon"]]
 collision_layer = 2
 collision_mask = 0
@@ -131,13 +127,7 @@ animation = &"fly"
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ak381")
 
-[node name="EnemyHitBox" type="Area2D" parent="." groups=["pigeon"]]
-collision_layer = 2
-script = ExtResource("3_ds68q")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_4avo5")
+[node name="EnemyHitBox" parent="." instance=ExtResource("4_j30ek")]
 
 [node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
 rect = Rect2(-1, -1, 2, 2)

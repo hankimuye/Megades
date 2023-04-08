@@ -1,0 +1,112 @@
+[gd_scene load_steps=17 format=3 uid="uid://dctf7hcji3mwr"]
+
+[ext_resource type="Texture2D" uid="uid://7m5wy2u8fms1" path="res://art/Bird Fall (40x48).png" id="1_f4odu"]
+[ext_resource type="Texture2D" uid="uid://b0qclbpoivuo8" path="res://art/RedBird Flying (32x32).png" id="2_gv7c4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux53u"]
+atlas = ExtResource("1_f4odu")
+region = Rect2(0, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6jsa"]
+atlas = ExtResource("1_f4odu")
+region = Rect2(40, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5eqx"]
+atlas = ExtResource("1_f4odu")
+region = Rect2(80, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dva1k"]
+atlas = ExtResource("1_f4odu")
+region = Rect2(120, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na4jm"]
+atlas = ExtResource("2_gv7c4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo275"]
+atlas = ExtResource("2_gv7c4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a00o1"]
+atlas = ExtResource("2_gv7c4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svn6w"]
+atlas = ExtResource("2_gv7c4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml3bt"]
+atlas = ExtResource("2_gv7c4")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5jb4"]
+atlas = ExtResource("2_gv7c4")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8nvy"]
+atlas = ExtResource("2_gv7c4")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ru6a"]
+atlas = ExtResource("2_gv7c4")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i24dv"]
+atlas = ExtResource("2_gv7c4")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2wqn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux53u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6jsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5eqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dva1k")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_na4jm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo275")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a00o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svn6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml3bt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5jb4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8nvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ru6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i24dv")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 20.0
+}]
+
+[node name="RodeVogel" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_f2wqn")
+animation = &"fly"
