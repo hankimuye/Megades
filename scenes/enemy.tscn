@@ -1,0 +1,149 @@
+[gd_scene load_steps=22 format=3 uid="uid://bwxqnmyeobwnd"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_a7kpx"]
+[ext_resource type="Texture2D" uid="uid://7m5wy2u8fms1" path="res://art/Bird Fall (40x48).png" id="2_3xmse"]
+[ext_resource type="Texture2D" uid="uid://ci80hc3rpfeyr" path="res://art/Bird Flying (32x32).png" id="2_peyd0"]
+[ext_resource type="Script" path="res://scripts/enemyhitbox.gd" id="3_ds68q"]
+[ext_resource type="AudioStream" uid="uid://ehxului7fx3n" path="res://sounds/kakaoo.mp3" id="5_fjvr5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv6wr"]
+atlas = ExtResource("2_3xmse")
+region = Rect2(0, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ufrx"]
+atlas = ExtResource("2_3xmse")
+region = Rect2(40, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy68p"]
+atlas = ExtResource("2_3xmse")
+region = Rect2(80, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvt8l"]
+atlas = ExtResource("2_3xmse")
+region = Rect2(120, 0, 40, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4uu4"]
+atlas = ExtResource("2_peyd0")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqgii"]
+atlas = ExtResource("2_peyd0")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqctp"]
+atlas = ExtResource("2_peyd0")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p6le"]
+atlas = ExtResource("2_peyd0")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7ljq"]
+atlas = ExtResource("2_peyd0")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed7v3"]
+atlas = ExtResource("2_peyd0")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8rxe"]
+atlas = ExtResource("2_peyd0")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agtt2"]
+atlas = ExtResource("2_peyd0")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxdjr"]
+atlas = ExtResource("2_peyd0")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2wqn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv6wr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ufrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy68p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvt8l")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4uu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqgii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqctp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p6le")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7ljq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ed7v3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8rxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agtt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxdjr")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 20.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ak381"]
+radius = 12.0
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4avo5"]
+radius = 11.0
+height = 24.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["pigeon"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_a7kpx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f2wqn")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ak381")
+
+[node name="EnemyHitBox" type="Area2D" parent="." groups=["pigeon"]]
+collision_layer = 2
+script = ExtResource("3_ds68q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4avo5")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-1, -1, 2, 2)
+
+[node name="Kakaoo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fjvr5")
+volume_db = -15.0
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

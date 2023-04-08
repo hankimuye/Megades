@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6ao70v6kpey1"]
+
+[ext_resource type="Texture2D" uid="uid://dd7cbtdj7uh83" path="res://art/flockoff.png" id="1_gobxj"]
+[ext_resource type="Script" path="res://scripts/flock_off.gd" id="1_l3hbe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x46qs"]
+radius = 15.0
+
+[node name="FlockOff" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 2
+gravity_scale = 2.66454e-15
+script = ExtResource("1_l3hbe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gobxj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 2)
+shape = SubResource("CircleShape2D_x46qs")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

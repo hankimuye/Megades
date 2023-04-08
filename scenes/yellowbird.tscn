@@ -1,0 +1,114 @@
+[gd_scene load_steps=17 format=3 uid="uid://d1kb2duem0631"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_7vmtr"]
+[ext_resource type="Texture2D" uid="uid://ddpfsxn5efuvn" path="res://art/Yellow Bird Flying (32x32).png" id="2_24cqs"]
+[ext_resource type="Script" path="res://scripts/enemyhitbox.gd" id="3_pb0we"]
+[ext_resource type="AudioStream" uid="uid://ehxului7fx3n" path="res://sounds/kakaoo.mp3" id="4_ii4cl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4owqc"]
+atlas = ExtResource("2_24cqs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_habi3"]
+atlas = ExtResource("2_24cqs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctv50"]
+atlas = ExtResource("2_24cqs")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qbawo"]
+atlas = ExtResource("2_24cqs")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vntca"]
+atlas = ExtResource("2_24cqs")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpdq6"]
+atlas = ExtResource("2_24cqs")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch4qp"]
+atlas = ExtResource("2_24cqs")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrsxv"]
+atlas = ExtResource("2_24cqs")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmtfa"]
+atlas = ExtResource("2_24cqs")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f2wqn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4owqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_habi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctv50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qbawo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vntca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpdq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ch4qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrsxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmtfa")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 20.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ak381"]
+radius = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4avo5"]
+height = 28.0
+
+[node name="YellowBird" type="CharacterBody2D" groups=["pigeon"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_7vmtr")
+speed = -65
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f2wqn")
+animation = &"fly"
+frame_progress = 0.968385
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ak381")
+
+[node name="EnemyHitBox" type="Area2D" parent="." groups=["pigeon"]]
+collision_layer = 2
+script = ExtResource("3_pb0we")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4avo5")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(-1, -1, 2, 2)
+
+[node name="Kakaoo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ii4cl")
+volume_db = -15.0
+pitch_scale = 0.85

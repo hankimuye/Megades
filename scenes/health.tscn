@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bf7dt23wmgauo"]
+
+[ext_resource type="Script" path="res://scripts/health.gd" id="1_fpwuj"]
+[ext_resource type="Texture2D" uid="uid://cu7mjtn7570i4" path="res://art/health.png" id="1_lomfb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4q6fv"]
+size = Vector2(22, 7)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qte6m"]
+radius = 17.0
+
+[node name="Health" type="Area2D"]
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lomfb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 9.5)
+shape = SubResource("RectangleShape2D_4q6fv")
+
+[node name="collectbox" type="Area2D" parent="." groups=["health"]]
+collision_layer = 4
+script = ExtResource("1_fpwuj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collectbox"]
+shape = SubResource("CircleShape2D_qte6m")

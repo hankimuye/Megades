@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://mssfu3gt36n2"]
+
+[ext_resource type="Texture2D" uid="uid://b5vhr5y3eud8g" path="res://art/background.jpg" id="1_jedmj"]
+[ext_resource type="Texture2D" uid="uid://dd7cbtdj7uh83" path="res://art/flockoff.png" id="2_pduar"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="2_wr86p"]
+[ext_resource type="Texture2D" uid="uid://btwb6ypfopl6b" path="res://art/howtoplay.jpg" id="4_pr0o7"]
+
+[sub_resource type="SystemFont" id="SystemFont_jl5as"]
+font_weight = 425
+
+[node name="Menu" type="Node2D"]
+position = Vector2(386, 330)
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(124, 11)
+texture = ExtResource("1_jedmj")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -390.0
+offset_top = -310.0
+offset_right = 410.0
+offset_bottom = 290.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.25098, 0.25098, 0.25098, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = SubResource("SystemFont_jl5as")
+theme_override_font_sizes/font_size = 72
+text = "MegaDes"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/margin_top = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_wr86p")
+
+[node name="StartButton" type="Button" parent="UI/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "Start Game"
+icon = ExtResource("2_pduar")
+
+[node name="HowToPlayButton" type="Button" parent="UI/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "How to play"
+icon = ExtResource("2_pduar")
+
+[node name="Rules" type="TextureRect" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -72.0
+offset_right = 130.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_pr0o7")
+stretch_mode = 3
+
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton" to="UI/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" method="_on_start_button_pressed"]
+[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HowToPlayButton" to="UI/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" method="_on_how_to_play_button_pressed"]

@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://b8wypbe6jdc26"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_mle82"]
+[ext_resource type="Texture2D" uid="uid://bo6vlsyc7rqor" path="res://art/alex.png" id="2_2psqb"]
+[ext_resource type="Shader" path="res://shaders/player.gdshader" id="2_f3jv5"]
+[ext_resource type="AudioStream" uid="uid://dndqleo8xuu61" path="res://sounds/ouchy.mp3" id="4_k7e58"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_akufn"]
+shader = ExtResource("2_f3jv5")
+shader_parameter/hit_opacity = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tgtvh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_moy24"]
+radius = 19.0
+height = 62.0
+
+[sub_resource type="Animation" id="Animation_wwr5w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4vcjn"]
+resource_name = "on_hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 2.08165e-12, 1.0, 2.08165e-12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ipjib"]
+_data = {
+"RESET": SubResource("Animation_wwr5w"),
+"on_hit": SubResource("Animation_4vcjn")
+}
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_mle82")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_akufn")
+texture = ExtResource("2_2psqb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_tgtvh")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_moy24")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ipjib")
+}
+
+[node name="Auw" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_k7e58")
+volume_db = -10.0
+pitch_scale = 1.3
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

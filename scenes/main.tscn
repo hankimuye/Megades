@@ -1,0 +1,155 @@
+[gd_scene load_steps=9 format=3 uid="uid://tieljoe42uab"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_d6bgb"]
+[ext_resource type="Texture2D" uid="uid://b5vhr5y3eud8g" path="res://art/background.jpg" id="1_tx3jx"]
+[ext_resource type="PackedScene" uid="uid://b8wypbe6jdc26" path="res://scenes/player.tscn" id="2_qejlt"]
+[ext_resource type="PackedScene" uid="uid://bwa0vhhtp8vhc" path="res://scenes/ammo.tscn" id="4_ssflr"]
+[ext_resource type="PackedScene" uid="uid://bf7dt23wmgauo" path="res://scenes/health.tscn" id="5_okji1"]
+[ext_resource type="AudioStream" uid="uid://cp0g1k1bl2yjb" path="res://sounds/bgmusic.wav" id="6_ddrkb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_w5k6o"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5g5n"]
+size = Vector2(242, 20)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_d6bgb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+anchor_mode = 0
+limit_left = 0
+limit_top = 0
+limit_right = 800
+limit_bottom = 600
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(369, 289)
+scale = Vector2(0.88, 0.88)
+texture = ExtResource("1_tx3jx")
+
+[node name="Player" parent="." instance=ExtResource("2_qejlt")]
+position = Vector2(100, 300)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Area2D" type="StaticBody2D" parent="Node"]
+visible = false
+collision_layer = 4
+physics_material_override = SubResource("PhysicsMaterial_w5k6o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Area2D"]
+position = Vector2(121, -9)
+shape = SubResource("RectangleShape2D_k5g5n")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node/Area2D"]
+position = Vector2(122, 608)
+shape = SubResource("RectangleShape2D_k5g5n")
+
+[node name="Ammo" parent="." instance=ExtResource("4_ssflr")]
+position = Vector2(100, 580)
+
+[node name="Health" parent="." instance=ExtResource("5_okji1")]
+position = Vector2(100, 20)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 99
+
+[node name="UI" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health" type="Label" parent="HUD/UI"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 4.0
+offset_right = 256.0
+offset_bottom = 38.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 22
+text = "Health: 1000"
+
+[node name="Score" type="Label" parent="HUD/UI"]
+layout_mode = 0
+offset_left = 660.0
+offset_top = 4.0
+offset_right = 796.0
+offset_bottom = 38.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 22
+text = "Score: 1000"
+horizontal_alignment = 2
+
+[node name="Ammo" type="Label" parent="HUD/UI"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 562.0
+offset_right = 256.0
+offset_bottom = 596.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 22
+text = "Ammo: 1000"
+
+[node name="ScreenCover" type="ColorRect" parent="HUD/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -123.0
+offset_top = -44.0
+offset_right = 812.0
+offset_bottom = 569.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.568627)
+
+[node name="GameOver" type="Label" parent="HUD/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 195.0
+offset_top = 161.0
+offset_right = 507.0
+offset_bottom = 353.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "Game Over.
+Well done!  You scored %s points!
+Installing Flock Off 
+would have cost you less energy.
+
+Press \"Fire\" to restart."
+horizontal_alignment = 1
+
+[node name="PigeonSpawner" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="LevelUpTimer" type="Timer" parent="."]
+wait_time = 30.0
+autostart = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ddrkb")
+pitch_scale = 0.6
+autoplay = true
+max_polyphony = 20
+
+[connection signal="timeout" from="PigeonSpawner" to="." method="_on_pigeon_spawner_timeout"]
+[connection signal="timeout" from="LevelUpTimer" to="." method="_on_level_up_timer_timeout"]
