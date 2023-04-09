@@ -47,10 +47,10 @@ shape = SubResource("RectangleShape2D_k5g5n")
 position = Vector2(122, 608)
 shape = SubResource("RectangleShape2D_k5g5n")
 
-[node name="Ammo" parent="." instance=ExtResource("4_ssflr")]
+[node name="Ammo" parent="Node" instance=ExtResource("4_ssflr")]
 position = Vector2(100, 580)
 
-[node name="Health" parent="." instance=ExtResource("5_okji1")]
+[node name="Health" parent="Node" instance=ExtResource("5_okji1")]
 position = Vector2(100, 20)
 
 [node name="HUD" type="CanvasLayer" parent="."]

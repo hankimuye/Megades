@@ -14,11 +14,12 @@ var bird_index = [
 		"bluebird", -60, 1.0, 5,
 		"greybird", -65, 0.9, 10,
 		"redbird", -70, 1.1, 15,
-		"greenbird", -80, 1.2, 20,
-		"yellowbird", -90, 1.3, 25
-]
-var number_of_birds = [0, 4, 8 , 12, 16]
-var firstbird = 4
+		"greenbird", -75, 1.2, 20,
+		"yellowbird", -80, 1.3, 25,
+		"purplebird", -90, 1.4, 30 
+		]
+var number_of_birds = [0, 4, 8 , 12, 16, 20]
+var firstbird = 5
 var rng = RandomNumberGenerator.new()
 var game_ended = false
 var music_pitch: float = 0.8
@@ -56,15 +57,17 @@ func _spawn_pigeons():
 	var available_birds = rng.randi_range(0, number_of_birds.size() -firstbird)
 	#print(available_birds)
 	#we have picked our bird, now pick the color
-	#var picked_pigeon = bird_index[available_birds]
+	#var spawn_bird = bird_index[available_birds]
 	#print(picked_pigeon)
 	var speed = available_birds + 1
+	print(speed)
 	var die_pitch = available_birds + 2
+	print(die_pitch)
 	#var damage = available_birds + 3
 	var spawn_bird = thebirds.instantiate()
 	var y = rng.randi_range(40,560)
 	spawn_bird.position = Vector2(750, y)
-	#spawn_bird.animation = bird_index[available_birds]
+	spawn_bird.playthis = bird_index[available_birds]
 	spawn_bird.speed = bird_index[speed]
 	spawn_bird.die_pitch = bird_index[die_pitch]
 	#spawn_bird.damage = bird_index[damage]

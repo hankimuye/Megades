@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dr4d584ioo352"]
+[gd_scene load_steps=17 format=3]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_jn86j"]
+[ext_resource type="Script" path="res://scripts/obs/enemy.gd" id="1_jn86j"]
 [ext_resource type="Texture2D" uid="uid://cfh43co6pkw1e" path="res://art/Purple Bird Flying (32x32).png" id="2_vpa3h"]
 [ext_resource type="Script" path="res://scripts/enemyhitbox.gd" id="3_xtavj"]
 [ext_resource type="AudioStream" uid="uid://ehxului7fx3n" path="res://sounds/kakaoo.mp3" id="4_bqwtb"]

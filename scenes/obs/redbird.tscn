@@ -1,6 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://dvya8er082wgu"]
+[gd_scene load_steps=22 format=3]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ifxfu"]
+[ext_resource type="Script" path="res://scripts/obs/enemy.gd" id="1_ifxfu"]
 [ext_resource type="Texture2D" uid="uid://b0qclbpoivuo8" path="res://art/RedBird Flying (32x32).png" id="2_fcn3v"]
 [ext_resource type="Texture2D" uid="uid://7m5wy2u8fms1" path="res://art/Bird Fall (40x48).png" id="2_jtdyr"]
 [ext_resource type="Script" path="res://scripts/enemyhitbox.gd" id="3_2sc8h"]

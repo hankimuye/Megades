@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dvcw3c5jp42dc"]
+[gd_scene load_steps=17 format=3]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_rd5j2"]
+[ext_resource type="Script" path="res://scripts/obs/enemy.gd" id="1_rd5j2"]
 [ext_resource type="Texture2D" uid="uid://w3stdfxteb8q" path="res://art/Green Bird Flying (32x32).png" id="2_du4cs"]
 [ext_resource type="Script" path="res://scripts/enemyhitbox.gd" id="3_4yg6a"]
 [ext_resource type="AudioStream" uid="uid://ehxului7fx3n" path="res://sounds/kakaoo.mp3" id="4_iunkb"]

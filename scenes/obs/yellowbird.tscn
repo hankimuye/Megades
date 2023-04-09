@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://d1kb2duem0631"]
+[gd_scene load_steps=17 format=3]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_7vmtr"]
+[ext_resource type="Script" path="res://scripts/obs/enemy.gd" id="1_7vmtr"]
 [ext_resource type="Texture2D" uid="uid://ddpfsxn5efuvn" path="res://art/Yellow Bird Flying (32x32).png" id="2_24cqs"]
 [ext_resource type="Script" path="res://scripts/enemyhitbox.gd" id="3_pb0we"]
 [ext_resource type="AudioStream" uid="uid://ehxului7fx3n" path="res://sounds/kakaoo.mp3" id="4_ii4cl"]

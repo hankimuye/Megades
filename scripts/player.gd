@@ -3,8 +3,8 @@ extends CharacterBody2D
 signal player_died
 
 @onready var game = $"/root/World"
-@onready var health_postion = $"/root/World/Health"
-@onready var ammo_potion = $"/root/World/Ammo"
+@onready var health_postion = $"/root/World/Node/Health"
+@onready var ammo_potion = $"/root/World/Node/Ammo"
 @onready var auw_snd = $Auw
 
 @export var health = 100
