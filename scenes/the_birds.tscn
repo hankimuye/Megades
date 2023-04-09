@@ -465,7 +465,7 @@ script = ExtResource("1_viwak")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8g0kf")
-animation = &"fall"
+animation = &"bluebird"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7spx0")

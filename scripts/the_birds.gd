@@ -10,17 +10,16 @@ extends CharacterBody2D
 var flying = true
 
 func _ready():
-	print(animation)
 	player.player_died.connect(_on_player_died)
 
-	
+
 func _process(_delta):
 	pass 
 
 func _physics_process(_delta):
 	if flying == true:
 		velocity.x = speed
-		animation.play("bluebird")
+		animation.play(playthis)
 	move_and_slide()
 
 
